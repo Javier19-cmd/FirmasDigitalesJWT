@@ -15,13 +15,13 @@ app.get('/', (req, res) => {
   res.send('Hola Mundo!');
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
 
 // URL de conexión local por defecto de MongoDB
-const mongoURI = 'mongodb://localhost:27017/JWT';
+const mongoURI = process.env.MONGO;
 
 // Conectar a MongoDB
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
