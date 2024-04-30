@@ -11,10 +11,6 @@ app.use(express.json());
 
 app.use(cors());
 
-app.get('/', (req, res) => {
-  res.send('Hola Mundo!');
-});
-
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
@@ -34,9 +30,6 @@ app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 8);
 
-    // Aquí deberías agregar el nuevo usuario a tu base de datos
-    // Por ejemplo: await db.user.create({ username, password: hashedPassword });
-
     //console.log("Modelo: ", db.user)
 
     const user = new User({ username, password: hashedPassword });
@@ -48,9 +41,7 @@ app.post('/register', async (req, res) => {
 // Login de usuarios
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
-
-    // Aquí deberías buscar el usuario en tu base de datos
-    // Por ejemplo: const user = await db.user.findOne({ where: { username } });
+    
     const user = await User.findOne({ username });
 
     if (!user || !await bcrypt.compare(password, user.password)) {
