@@ -1,0 +1,33 @@
+/* Dashboard.css */
+.dashboard-container {
+    padding: 20px;
+    text-align: center;
+}
+
+.dashboard-button {
+    background-color: #007bff; /* Blue */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease; /* Suaviza la transición de los cambios */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Sombra para dar profundidad */
+    outline: none; /* Remueve el borde que aparece al hacer clic */
+}
+
+.dashboard-button:hover {
+    background-color: #0056b3; /* Darker blue */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra más grande al pasar el mouse */
+    transform: translateY(-2px); /* Mueve ligeramente el botón hacia arriba */
+}
+
+.dashboard-button-back {
+    background-color: #28a745; /* Green */
+}
+
+.dashboard-button-back:hover {
+    background-color: #218838; /* Darker green */
+}
