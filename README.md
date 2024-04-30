@@ -1,6 +1,17 @@
-# Client
+# Firmas Digitales JWT
 
-### `npm start`
+## Consideraciones: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Tener instalado Node.js y MongoDB.
+
+## Client
+
+1. Navegar dentro de la carpeta del repositorio hacia la carpeta client usando cd client.
+2. Instalar las dependencias con npm i.
+3. Correr el proyecto con npm start. 
+
+## Server
+
+1. Navegar dentro de la carpeta del repositorio hacia la carpeta server usando cd server.
+2. Instalar las dependencias con npm i.
+3. Correr el proyecto con npm start.
