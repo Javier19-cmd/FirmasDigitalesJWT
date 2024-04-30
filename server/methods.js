@@ -2,6 +2,8 @@ const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
+const { db } = require('./modelos/userModel');
+const mongoose = require('mongoose');
 
 require('dotenv').config();
 
@@ -10,6 +12,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
+// URL de conexión local por defecto de MongoDB
+const mongoURI = 'mongodb://localhost:27017/JWT';
+
+// Conectar a MongoDB
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Conexión a MongoDB establecida'))
+    .catch(err => console.error('No se pudo conectar a MongoDB', err));
+
 // Registro de usuarios
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
@@ -17,6 +27,8 @@ app.post('/register', async (req, res) => {
 
     // Aquí deberías agregar el nuevo usuario a tu base de datos
     // Por ejemplo: await db.user.create({ username, password: hashedPassword });
+
+    await db.user.create({ username, password: hashedPassword });
 
     res.status(201).send('Usuario registrado');
 });
@@ -27,7 +39,7 @@ app.post('/login', async (req, res) => {
     
     // Aquí deberías buscar el usuario en tu base de datos
     // Por ejemplo: const user = await db.user.findOne({ where: { username } });
-    const user = { username, password }; // Esto es solo un ejemplo, elimínalo
+    const user = { username, password };
 
     if (!user || !await bcrypt.compare(password, user.password)) {
         return res.status(401).send('Autenticación fallida');
